@@ -23,10 +23,13 @@ First, open the ``client`` folder in the project root and enter the following co
 - jspm install -y
 - typing install
 
-Nexy, open the ``server`` folder in the project root and type ``npm install``
+Next, open the ``server`` folder in the project root and type ``npm install``
 
 ## Starting the Server
 To run, open the ``server`` folder and type ``npm start``. it will run on port 4000 by default.
 
 ## Accessing the Application
 To open the app, all you need to do is open a browser and go to the following URL: ``http://localhost:4000``.
+
+## Compiling Typescript after modifying / creating .ts files
+When you make any changes to a .ts file, or create one, you will need to compile them in order to view them in a browser. To accomplish this, simply navigate to the ``client`` folder in a command terminal, type ``gulp`` and click enter.
