@@ -35,7 +35,7 @@ System.register(['aurelia-framework', '../../models/FnTs'], function(exports_1, 
                         new Promise(this.generateNumber)
                     ];
                     this.toggle_visibility = {
-                        panel_body_1: 'show'
+                        fnc_panel: 'show'
                     };
                     this.transform_data = (data) => {
                         return this.fn.fn_Map(data, (val) => {
@@ -96,10 +96,10 @@ System.register(['aurelia-framework', '../../models/FnTs'], function(exports_1, 
                 //event-aggregator handlers
                 toggleFunctionalPanel(state) {
                     if (state) {
-                        this.toggle_visibility.panel_body_1 = 'show';
+                        this.toggle_visibility.fnc_panel = 'show';
                     }
                     else {
-                        this.toggle_visibility.panel_body_1 = 'hide';
+                        this.toggle_visibility.fnc_panel = 'hide';
                     }
                 }
                 //sample promise handlers

@@ -25,7 +25,7 @@ System.register(['aurelia-framework', '../../models/FnTs'], function(exports_1, 
                 constructor(fn) {
                     this.fn = fn;
                     this.toggle_visibility = {
-                        panel_body_1: 'show'
+                        dash_panel: 'show'
                     };
                 }
                 attached() {
@@ -41,10 +41,10 @@ System.register(['aurelia-framework', '../../models/FnTs'], function(exports_1, 
                 //event-aggregator handlers
                 toggleDashPanel(state) {
                     if (state) {
-                        this.toggle_visibility.panel_body_1 = 'show';
+                        this.toggle_visibility.dash_panel = 'show';
                     }
                     else {
-                        this.toggle_visibility.panel_body_1 = 'hide';
+                        this.toggle_visibility.dash_panel = 'hide';
                     }
                 }
             };

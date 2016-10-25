@@ -17,7 +17,7 @@ export class Functional {
         new Promise(this.generateNumber)
     ];
     toggle_visibility: any = {
-        panel_body_1: 'show'
+        fnc_panel: 'show'
     }
 
     constructor(private fn: FnTs) {  }
@@ -90,9 +90,9 @@ export class Functional {
     //event-aggregator handlers
     toggleFunctionalPanel(state: boolean): void {
         if (state) {
-            this.toggle_visibility.panel_body_1 = 'show';
+            this.toggle_visibility.fnc_panel = 'show';
         } else {
-            this.toggle_visibility.panel_body_1 = 'hide';
+            this.toggle_visibility.fnc_panel = 'hide';
         }
     }
 

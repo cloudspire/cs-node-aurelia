@@ -74,6 +74,25 @@ System.register(['aurelia-framework', 'aurelia-event-aggregator'], function(expo
                         res(rslt);
                     });
                 }
+                //output functions - useful for quick error handlers
+                logText(msg) {
+                    return new Promise((res) => {
+                        console.log(msg);
+                        res(msg);
+                    });
+                }
+                logDir(data) {
+                    return new Promise((res) => {
+                        console.dir(data);
+                        res(data);
+                    });
+                }
+                logError(err) {
+                    return new Promise((res) => {
+                        console.error(err);
+                        res(err);
+                    });
+                }
                 // internal functions
                 afterSeries(times, func) {
                     return () => {
@@ -127,25 +146,6 @@ System.register(['aurelia-framework', 'aurelia-event-aggregator'], function(expo
                     while (right.length)
                         result.push(right.shift());
                     return result;
-                }
-                //output functions - useful for quick error handlers
-                logText(msg) {
-                    return new Promise((res) => {
-                        console.log(msg);
-                        res(msg);
-                    });
-                }
-                logDir(data) {
-                    return new Promise((res) => {
-                        console.dir(data);
-                        res(data);
-                    });
-                }
-                logError(err) {
-                    return new Promise((res) => {
-                        console.error(err);
-                        res(err);
-                    });
                 }
             };
             FnTs = __decorate([

@@ -60,6 +60,28 @@ export class FnTs {
         });
     }
 
+    //output functions - useful for quick error handlers
+    public logText(msg: string): Promise<any> {
+        return new Promise((res) => {
+            console.log(msg);
+            res(msg);
+        });
+    }
+
+    public logDir(data: any): Promise<any> {
+        return new Promise((res) => {
+            console.dir(data);
+            res(data);
+        });
+    }
+
+    public logError(err: Error): Promise<any> {
+        return new Promise((res) => {
+            console.error(err);
+            res(err);
+        });
+    }
+
     // internal functions
     private afterSeries(times: number, func: Function): Function {
         return () => {
@@ -122,27 +144,5 @@ export class FnTs {
             result.push(right.shift());
 
         return result;
-    }
-
-    //output functions - useful for quick error handlers
-    public logText(msg: string): Promise<any> {
-        return new Promise((res) => {
-            console.log(msg);
-            res(msg);
-        });
-    }
-
-    public logDir(data: any): Promise<any> {
-        return new Promise((res) => {
-            console.dir(data);
-            res(data);
-        });
-    }
-
-    public logError(err: Error): Promise<any> {
-        return new Promise((res) => {
-            console.error(err);
-            res(err);
-        });
     }
 }

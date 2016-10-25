@@ -6,7 +6,7 @@ export class Dash {
     
     app_events: any;
     toggle_visibility: any = {
-        panel_body_1: 'show'
+        dash_panel: 'show'
     }
 
     constructor(private fn: FnTs) {  }
@@ -24,9 +24,9 @@ export class Dash {
     //event-aggregator handlers
     toggleDashPanel(state: boolean): void {
         if (state) {
-            this.toggle_visibility.panel_body_1 = 'show';
+            this.toggle_visibility.dash_panel = 'show';
         } else {
-            this.toggle_visibility.panel_body_1 = 'hide';
+            this.toggle_visibility.dash_panel = 'hide';
         }
     }
 }
