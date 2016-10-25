@@ -33,13 +33,21 @@ var vendor_config = {
     }
 };
 
-gulp.task("default", ["bundle-vendor"], function () {
+//UNCOMMENT IF CHANGES ARE MADE TO JSPM
+//gulp.task("default", ["bundle-vendor"], function () {
+//    return tsProject.src()
+//        .pipe(tsProject())
+//        .js.pipe(gulp.dest("src"));
+//});
+
+//gulp.task('bundle-vendor', function (callback) {
+//    return bundler.bundle(vendor_config);
+//	callback();
+//});
+
+//COMMENT IF CHANGES ARE MADE TO JSPM
+gulp.task("default", function () {
     return tsProject.src()
         .pipe(tsProject())
         .js.pipe(gulp.dest("src"));
-});
-
-gulp.task('bundle-vendor', function (callback) {
-    return bundler.bundle(vendor_config);
-	callback();
 });

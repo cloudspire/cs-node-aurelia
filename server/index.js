@@ -22,13 +22,13 @@ app.use(express.static(path.join(__dirname, '../client/src')));
 ////static pages
 var home = require('./routes/view_engine/index');
 ////api requests
-// var hello = require('./routes/hello');
+var hello = require('./routes/hello');
 
 //Route Paths to Middleware
 ////static-pages
 app.use('/', home);
 ////api requests
-// app.use('/api/hello/', hello);
+app.use('/api/hello/', hello);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

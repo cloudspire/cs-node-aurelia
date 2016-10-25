@@ -1,4 +1,4 @@
-System.register(["aurelia-framework", "aurelia-router"], function(exports_1, context_1) {
+System.register(["aurelia-framework", "aurelia-router", './models/FnTs'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["aurelia-framework", "aurelia-router"], function(exports_1, con
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var aurelia_framework_1, aurelia_router_1;
+    var aurelia_framework_1, aurelia_router_1, FnTs_1;
     var App;
     return {
         setters:[
@@ -19,11 +19,15 @@ System.register(["aurelia-framework", "aurelia-router"], function(exports_1, con
             },
             function (aurelia_router_1_1) {
                 aurelia_router_1 = aurelia_router_1_1;
+            },
+            function (FnTs_1_1) {
+                FnTs_1 = FnTs_1_1;
             }],
         execute: function() {
             App = class App {
-                constructor(router) {
+                constructor(router, fn) {
                     this.router = router;
+                    this.fn = fn;
                     this.loadRouter();
                     this.appLoaded();
                 }
@@ -32,16 +36,30 @@ System.register(["aurelia-framework", "aurelia-router"], function(exports_1, con
                         config.title = "Aurelia";
                         config.map([
                             { route: ['', 'dash'], name: 'dash', moduleId: './views/dashboard/dash', nav: true, title: 'Dashboard' },
+                            { route: ['functional'], name: 'functional', moduleId: './views/functional/functional', nav: true, title: 'Functional' }
                         ]);
                         return config;
                     });
                 }
+                loadEventHandlers() {
+                    this.app_events = this.fn.ea.subscribe('react', (event) => {
+                        if (event.target_name == "app") {
+                            if (this[event.event_name] != null) {
+                                this[event.event_name](event.data);
+                            }
+                        }
+                    });
+                }
                 appLoaded() {
+                }
+                //event-aggregator handlers
+                loadRoute(route) {
+                    this.router.navigate(route);
                 }
             };
             App = __decorate([
-                aurelia_framework_1.inject(aurelia_router_1.Router), 
-                __metadata('design:paramtypes', [aurelia_router_1.Router])
+                aurelia_framework_1.inject(aurelia_router_1.Router, FnTs_1.FnTs), 
+                __metadata('design:paramtypes', [aurelia_router_1.Router, FnTs_1.FnTs])
             ], App);
             exports_1("App", App);
         }

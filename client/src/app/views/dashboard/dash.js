@@ -1,4 +1,4 @@
-System.register(['aurelia-framework', '../../models/utilities'], function(exports_1, context_1) {
+System.register(['aurelia-framework', '../../models/FnTs'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,38 +10,47 @@ System.register(['aurelia-framework', '../../models/utilities'], function(export
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var aurelia_framework_1, utilities_1;
+    var aurelia_framework_1, FnTs_1;
     var Dash;
     return {
         setters:[
             function (aurelia_framework_1_1) {
                 aurelia_framework_1 = aurelia_framework_1_1;
             },
-            function (utilities_1_1) {
-                utilities_1 = utilities_1_1;
+            function (FnTs_1_1) {
+                FnTs_1 = FnTs_1_1;
             }],
         execute: function() {
             Dash = class Dash {
-                constructor(utils) {
-                    this.utils = utils;
+                constructor(fn) {
+                    this.fn = fn;
                     this.toggle_visibility = {
                         panel_body_1: 'show'
                     };
                 }
                 attached() {
-                    this.utils.addEventListener('toggle_panel_1', 'dash.ts', (state) => {
-                        if (state) {
-                            this.toggle_visibility.panel_body_1 = 'show';
-                        }
-                        else {
-                            this.toggle_visibility.panel_body_1 = 'hide';
+                    this.app_events = this.fn.ea.subscribe('react', (event) => {
+                        if (this[event.event_name] != null) {
+                            this[event.event_name](event.data);
                         }
                     });
                 }
+                detached() {
+                    this.app_events.dispose();
+                }
+                //event-aggregator handlers
+                toggleDashPanel(state) {
+                    if (state) {
+                        this.toggle_visibility.panel_body_1 = 'show';
+                    }
+                    else {
+                        this.toggle_visibility.panel_body_1 = 'hide';
+                    }
+                }
             };
             Dash = __decorate([
-                aurelia_framework_1.inject(utilities_1.Utilities), 
-                __metadata('design:paramtypes', [utilities_1.Utilities])
+                aurelia_framework_1.inject(FnTs_1.FnTs), 
+                __metadata('design:paramtypes', [FnTs_1.FnTs])
             ], Dash);
             exports_1("Dash", Dash);
         }
