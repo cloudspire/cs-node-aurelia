@@ -19,6 +19,13 @@ export class Functional {
     toggle_visibility: any = {
         fnc_panel: 'show'
     }
+    testSearchByKey: any = {
+        x_1: {
+            a_i_1: { x_i_j_1: [] },
+            b_i_1: { b_i_j_1: { b_i_j_k_1: {value: 'fake_value'} }, b_i_j_2: [] },
+            c_i_1: { c_i_j_1: [] },
+        }
+    }
 
     constructor(private fn: FnTs) {  }
 
@@ -50,6 +57,16 @@ export class Functional {
         //example 4 - simple ajax request using promises
         this.fn.fn_Ajax({ url: '/api/hello' })
             .then(this.registerApiResponse);
+
+        this.fn.fn_FindByKey(this.testSearchByKey, 'b_i_j_k_1')
+            .then((data: any) => {
+                var test = data;
+            });
+
+        this.fn.fn_FindByKey(this.testSearchByKey, 'b_i_j_k_1', 'bfs')
+            .then((data: any) => {
+                var test = data;
+            });
 
         this.app_events = this.fn.ea.subscribe('react', (event: any) => {
             if (this[event.event_name] != null) { this[event.event_name](event.data); }

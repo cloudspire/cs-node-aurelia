@@ -60,6 +60,19 @@ export class FnTs {
         });
     }
 
+    public fn_FindByKey(array: any, key: string, type: string = "dfs"): Promise<any> {
+        //'type' variable should be either dfs (depth first, default) or bfs (breadth first)
+        return new Promise((res, err) => {
+            if (type == "bfs") {
+                var rslt = this.BfsByKey(array, key);
+                res(rslt);
+            } else {
+                var rslt = this.DfsByKey(array, key);
+                res(rslt);
+            }
+        });
+    }
+
     //output functions - useful for quick error handlers
     public logText(msg: string): Promise<any> {
         return new Promise((res) => {
@@ -144,5 +157,47 @@ export class FnTs {
             result.push(right.shift());
 
         return result;
+    }
+
+    private DfsByKey(array: any, key: string, check_key: string = ''): any {
+        if (key == check_key) {
+            return array;
+        } else {
+            var keys = Object.keys(array), found;
+            if (keys.length > 0) {
+                for (var i = 0; i < keys.length; i++) {
+                    found = this.DfsByKey(array[keys[i]], key, keys[i]);
+                    if (found) { return found; }
+                }
+            } else {
+                return null;
+            }
+        }
+    }
+
+    private BfsByKey(array: any, key: string): any {
+        var queue = [];
+        var keys = Object.keys(array);
+        for (var i = 0; i < keys.length; i++) {
+            queue.push({
+                key: keys[i],
+                array: array
+            });
+        }
+        var obj;
+        while (queue.length > 0) {
+            obj = queue.shift();
+            if (obj.key == key) {
+                return obj.array;
+            } else {
+                keys = Object.keys(obj.array[obj.key]);
+                for (var i = 0; i < keys.length; i++) {
+                    queue.push({
+                        key: keys[i],
+                        array: obj.array[obj.key]
+                    });
+                }
+            }
+        }
     }
 }

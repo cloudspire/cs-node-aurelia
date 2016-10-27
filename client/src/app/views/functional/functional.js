@@ -37,6 +37,13 @@ System.register(['aurelia-framework', '../../models/FnTs'], function(exports_1, 
                     this.toggle_visibility = {
                         fnc_panel: 'show'
                     };
+                    this.testSearchByKey = {
+                        x_1: {
+                            a_i_1: { x_i_j_1: [] },
+                            b_i_1: { b_i_j_1: { b_i_j_k_1: { value: 'fake_value' } }, b_i_j_2: [] },
+                            c_i_1: { c_i_j_1: [] },
+                        }
+                    };
                     this.transform_data = (data) => {
                         return this.fn.fn_Map(data, (val) => {
                             return { num: val * 2 };
@@ -84,6 +91,14 @@ System.register(['aurelia-framework', '../../models/FnTs'], function(exports_1, 
                     //example 4 - simple ajax request using promises
                     this.fn.fn_Ajax({ url: '/api/hello' })
                         .then(this.registerApiResponse);
+                    this.fn.fn_FindByKey(this.testSearchByKey, 'b_i_j_k_1')
+                        .then((data) => {
+                        var test = data;
+                    });
+                    this.fn.fn_FindByKey(this.testSearchByKey, 'b_i_j_k_1', 'bfs')
+                        .then((data) => {
+                        var test = data;
+                    });
                     this.app_events = this.fn.ea.subscribe('react', (event) => {
                         if (this[event.event_name] != null) {
                             this[event.event_name](event.data);
