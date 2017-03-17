@@ -1,4 +1,4 @@
-# Cloudspire Technology - Node JS / Aurelia Framework
+# IoT Shaman - Node JS / Aurelia Framework
 
 This project contains minimalistic scaffolding for Node JS / Aurelia applications. 
 
