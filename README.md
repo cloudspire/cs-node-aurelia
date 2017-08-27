@@ -5,7 +5,7 @@ This project contains minimalistic scaffolding for Node JS / Aurelia application
 ## Project Structure
 The structure of this project is broken into two groups: ``client`` and ``server``. 
 The client folder contains the user-interface markup / logic, and is built on top of Typescript and Aurelia.
-The server folder contains the logic responsible for serving the files and processing requests from the client-side application.
+Everything outside the ``client`` folder is server code, containing the logic responsible for serving the files and processing requests from the client-side application.
 
 ## Requirements
 Before building this project you will need to following resources:
@@ -17,16 +17,16 @@ Before building this project you will need to following resources:
 *JSPM and Typings can both be installed using npm.
 
 ## Instalation
-First, open the ``client`` folder in the project root and enter the following commands:
+First, open the project's root folder in a command terminal and type ``npm install``.
+
+Next, open the ``client`` folder in the project root and enter the following commands:
 
 - npm install
 - jspm install -y
-- typing install
-
-Next, open the ``server`` folder in the project root and type ``npm install``
+- typings install
 
 ## Starting the Server
-To run, open the ``server`` folder and type ``npm start``. it will run on port 4000 by default.
+To run, navigate to te project's root folder in a command terminal and type ``npm start``. it will run on port 4000 by default.
 
 ## Accessing the Application
 To open the app, all you need to do is open a browser and go to the following URL: ``http://localhost:4000``.
