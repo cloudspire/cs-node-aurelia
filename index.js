@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //THIS SETS UP A STATIC RESOURCE FOLDER TO ACCESS PUBLIC FILES VIA HTTP
-app.use(express.static(path.join(__dirname, '../client/src')));
+app.use(express.static(path.join(__dirname, './client/src')));
 
 //Load Middleware Functions
 ////static pages

@@ -11,19 +11,16 @@ var vendor_config = {
         "vendor-build": {
             includes: [
                 'aurelia-bootstrapper',
-                'aurelia-dependency-injection',
                 'aurelia-framework',
                 'aurelia-templating-binding',
                 'aurelia-templating-resources',
                 'aurelia-loader-default',
-                'aurelia-fetch-client',
                 'aurelia-router',
                 'aurelia-templating-router',
                 'aurelia-history-browser',
                 'aurelia-logging-console',
                 'aurelia-event-aggregator',
-                'jquery',
-				'bootstrap'
+                'aurelia-pal-browser'
             ],
             options: {
                 inject: true,
@@ -33,21 +30,21 @@ var vendor_config = {
     }
 };
 
-//UNCOMMENT IF CHANGES ARE MADE TO JSPM
-//gulp.task("default", ["bundle-vendor"], function () {
-//    return tsProject.src()
-//        .pipe(tsProject())
-//        .js.pipe(gulp.dest("src"));
-//});
-
-//gulp.task('bundle-vendor', function (callback) {
-//    return bundler.bundle(vendor_config);
-//	callback();
-//});
-
-//COMMENT IF CHANGES ARE MADE TO JSPM
-gulp.task("default", function () {
+//BUILD JSPM PACKAGES AND CUSTOM TYPESCRIPT FILES
+gulp.task("build:all", ["bundle-vendor"], function () {
     return tsProject.src()
         .pipe(tsProject())
         .js.pipe(gulp.dest("src"));
+});
+
+//BUILD ONLY THE CUSTOM TYPESCRIPT FILES
+gulp.task("build", function () {
+    return tsProject.src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest("src"));
+});
+
+//BUILD JSPM PACKAGES ONLY
+gulp.task('bundle-vendor', function (callback) {
+    return bundler.bundle(vendor_config);
 });

@@ -23,8 +23,8 @@
 # Custom Ignores #
 ##################
 config/*
-server/node_modules
-server/node_modules/*
+node_modules
+node_modules/*
 client/node_modules
 client/node_modules/*
 client/typings
