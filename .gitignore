@@ -31,3 +31,4 @@ client/typings
 client/typings/*
 client/src/jspm_packages
 client/src/jspm_packages/*
+client/lib
