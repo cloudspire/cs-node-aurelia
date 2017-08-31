@@ -6,6 +6,10 @@ var bodyParser = require('body-parser');
 var app = express();
 app.set('env', 'development');
 
+//CONSOLE LOGGING
+var logger = require('morgan');
+app.use(logger('dev'));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
@@ -16,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //THIS SETS UP A STATIC RESOURCE FOLDER TO ACCESS PUBLIC FILES VIA HTTP
-app.use(express.static(path.join(__dirname, './client/src')));
+app.use(express.static(path.join(__dirname, './client')));
 
 //Load Middleware Functions
 ////static pages

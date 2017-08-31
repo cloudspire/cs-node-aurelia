@@ -1,16 +1,16 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": false,
+  "compilerOptions": {
+    "noImplicitAny": false,
 		"suppressImplicitAnyIndexErrors": true,
-        "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"target": "es6",
-		"module": "system",
+		"module": "es2015",
 		"typeRoots" : ["./typings/globals"]
-    },	
-    "include": [
-        "src/**/*"
-    ],
+  },	
+  "include": [
+      "src/**/*"
+  ],
 	"exclude": [
 		"src/jspm_packages",
 		"node_modules"
