@@ -35,7 +35,7 @@ gulp.task('release:client:js', function () {
         out_dir = get_out_dir(argv.version_num);
     }
     if (argv.transpile) {
-        gulp.src([start_dir + '/**/*.js'])
+        gulp.src([start_dir + '/**/*.js', '!/**/config.js'])
             .pipe(babel({
                 presets: ['es2015'],
                 plugins: ["transform-es2015-modules-systemjs"],
@@ -49,7 +49,7 @@ gulp.task('release:client:js', function () {
             }))
             .pipe(gulp.dest(out_dir));
     } else {
-        gulp.src([start_dir + '/**/*.js'])
+        gulp.src([start_dir + '/**/*.js', '!/**/config.js'])
             .pipe(gulp.dest(out_dir));
     }
 });
@@ -66,10 +66,23 @@ gulp.task('release:client:css', function () {
     ]).pipe(gulp.dest(out_dir));
 });
 
+gulp.task('release:client:config', function () {
+    var out_dir;
+    if (argv.version_num == null) {
+        out_dir = get_out_dir('local');
+    } else {
+        out_dir = get_out_dir(argv.version_num);
+    }
+    gulp.src([path.join(__dirname, '..', 'profiles', 'config.js')])
+        .pipe(transform(transformConfigJS, { encoding: 'utf8' }))
+        .pipe(gulp.dest(out_dir));
+});
+
 gulp.task('release:client', [
     'release:client:html',
     'release:client:js',
     'release:client:css',
+    'release:client:config'
 ], function () {
     
 });
@@ -77,4 +90,17 @@ gulp.task('release:client', [
 //HELPER FUNCTIONS
 function get_out_dir(version) {
     return path.join(libs, version);
+}
+
+function transformConfigJS(content) {
+    var warning = 'THIS FILE IS AUTO-GENERATED, PLEASE UPDATE THE FOLLOWING FILE INSTEAD: /buildjs/profiles/config.js';
+    var lib_path, vnum;
+    if (argv.version_num == null) {
+        lib_path = '/lib/local';
+        return content.replace('{{warning}}', warning).replace('{{baseURL}}', lib_path);
+    } else {
+        vnum = argv.version_num
+        lib_path = `/lib/${argv.version_num}`;
+        return content.replace('{{warning}}', warning).replace('{{baseURL}}', lib_path);
+    }
 }
